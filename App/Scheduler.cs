@@ -7,11 +7,8 @@ namespace App
     {
         protected const int SwitchTime = 3;
         protected int TurnAroundTime { get; set; }
+        protected int QueueLength { get; set; }
         protected ArrayList ProcessQueue { get; set; }
-        
-        protected Scheduler()
-        {
-        }
 
         /// <summary>
         /// Reads the file with the processes and put them in a queue
@@ -52,6 +49,8 @@ namespace App
 
                 count++;
             }
+
+            QueueLength = ProcessQueue.Count;
         }
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace App
         /// <returns>Average turnaround time</returns>
         protected int GetAvgTurnAroundTime()
         {
-            return TurnAroundTime / ProcessQueue.Count;
+            return TurnAroundTime / QueueLength;
         }
 
         /// <summary>

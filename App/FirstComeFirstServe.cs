@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace App
 {
-    public class FCFS : Scheduler, IScheduler
+    public class FirstComeCirstServe : Scheduler, IScheduler
     {
 
         /// <summary>
@@ -15,6 +15,12 @@ namespace App
         {
             ReadTestData(testData);
             
+            // Call once before everything so the method is compiled by JIT and then cached. 
+            // First call is longer that subsequent calls
+            AddBurstTimes();
+            TurnAroundTime = 0;
+            // End first method call.
+
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             
