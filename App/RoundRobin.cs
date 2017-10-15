@@ -39,6 +39,7 @@ namespace App
                     {
                         ProcessQueue.RemoveAt(i);
                         TurnAroundTime += _timeQ - burst + SwitchTime;
+                        i--;
                     }
                     else
                     {
