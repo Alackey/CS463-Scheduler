@@ -6,7 +6,8 @@ namespace App
     public class Scheduler
     {
         protected const int SwitchTime = 3;
-        protected int TurnAroundTime { get; set; }
+        protected int CPUTime { get; set; }
+        protected int TotalTurnAroundTime { get; set; }
         protected int QueueLength { get; set; }
         protected ArrayList ProcessQueue { get; set; }
 
@@ -16,7 +17,8 @@ namespace App
         /// <param name="testData"></param>
         protected void ReadTestData(string testData)
         {
-            TurnAroundTime = 0;
+            CPUTime = 0;
+            TotalTurnAroundTime = 0;
             ProcessQueue = new ArrayList();
             
             string[] lines = System.IO.File.ReadAllLines(testData);
@@ -46,9 +48,9 @@ namespace App
                         currentProc.Priority = Int32.Parse(line);
                         break;
                 }
-
                 count++;
             }
+            ProcessQueue.Add(currentProc);
 
             QueueLength = ProcessQueue.Count;
         }
@@ -59,7 +61,8 @@ namespace App
         /// <returns>Average turnaround time</returns>
         protected int GetAvgTurnAroundTime()
         {
-            return TurnAroundTime / QueueLength;
+            Console.WriteLine($"{TotalTurnAroundTime}:{CPUTime}:{QueueLength}");
+            return TotalTurnAroundTime / QueueLength;
         }
 
         /// <summary>
@@ -69,10 +72,17 @@ namespace App
         {
             foreach (Process currProc in ProcessQueue)
             {
-                TurnAroundTime += currProc.BurstTime + SwitchTime;
+//                Console.WriteLine(currProc.BurstTime);
+//                Console.WriteLine("b: " + CPUTime);
+                
+                CPUTime += currProc.BurstTime;
+                TotalTurnAroundTime += CPUTime;
+                CPUTime += SwitchTime;
+                
+                //Console.WriteLine("a: " + CPUTime);
             }
             // Remove last CPU time for switch since not necessary
-            TurnAroundTime -= SwitchTime;
+            CPUTime -= SwitchTime;
         }
     }
     

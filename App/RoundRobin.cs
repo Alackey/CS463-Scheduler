@@ -21,9 +21,6 @@ namespace App
         {
             ReadTestData(testData);
 
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-
             // Loop till all elements removed from ArrayList
             while (ProcessQueue.Count > 0)
             {
@@ -38,22 +35,23 @@ namespace App
                     if (proc.BurstTime <= 0)
                     {
                         ProcessQueue.RemoveAt(i);
-                        TurnAroundTime += _timeQ - burst + SwitchTime;
+                        CPUTime += _timeQ - burst;
+                        TotalTurnAroundTime += CPUTime;
+                        CPUTime += SwitchTime;
                         i--;
                     }
                     else
                     {
-                        TurnAroundTime += _timeQ + SwitchTime;
+                        CPUTime += _timeQ;
+                        TotalTurnAroundTime += CPUTime;
+                        CPUTime += SwitchTime;
                     }
                 }
             }
             
             // Remove last CPU time for switch since not necessary
-            TurnAroundTime -= SwitchTime;
-            
-            stopWatch.Stop();
-            Console.WriteLine($"Time Elapsed: {stopWatch.Elapsed.TotalMilliseconds}ms");
-            
+            CPUTime -= SwitchTime;
+
             return GetAvgTurnAroundTime();
         }
         

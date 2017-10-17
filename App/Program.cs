@@ -33,61 +33,61 @@ namespace App
             Console.WriteLine();
             
             // TestData2
-            Console.WriteLine("TestData2\n");
-
-            Console.WriteLine($"First-Come First-Serve");
-            Console.WriteLine($"Average TurnAround Time: {FCFS.Run("testdata2.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Shortest-Job-First");
-            Console.WriteLine($"Average TurnAround Time: {SJS.Run("testdata2.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Round Robin 30");
-            Console.WriteLine($"Average TurnAround Time: {RR30.Run("testdata2.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Round Robin 60");
-            Console.WriteLine($"Average TurnAround Time: {RR60.Run("testdata2.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Lottery");
-            Console.WriteLine($"Average TurnAround Time: {Lottery.Run("testdata2.txt")}");
-            Console.WriteLine();
-            
-            // TestData3
-            Console.WriteLine("TestData3\n");
-
-            Console.WriteLine($"First-Come First-Serve");
-            Console.WriteLine($"Average TurnAround Time: {FCFS.Run("testdata3.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Shortest-Job-First");
-            Console.WriteLine($"Average TurnAround Time: {SJS.Run("testdata3.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Round Robin 30");
-            Console.WriteLine($"Average TurnAround Time: {RR30.Run("testdata3.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Round Robin 60");
-            Console.WriteLine($"Average TurnAround Time: {RR60.Run("testdata3.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Lottery");
-            Console.WriteLine($"Average TurnAround Time: {Lottery.Run("testdata3.txt")}");
-            Console.WriteLine();
-            
-            // TestData4
-            Console.WriteLine("TestData4\n");
-
-            Console.WriteLine($"First-Come First-Serve");
-            Console.WriteLine($"Average TurnAround Time: {FCFS.Run("testdata4.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Shortest-Job-First");
-            Console.WriteLine($"Average TurnAround Time: {SJS.Run("testdata4.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Round Robin 30");
-            Console.WriteLine($"Average TurnAround Time: {RR30.Run("testdata4.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Round Robin 60");
-            Console.WriteLine($"Average TurnAround Time: {RR60.Run("testdata4.txt")}");
-            Console.WriteLine();
-            Console.WriteLine($"Lottery");
-            Console.WriteLine($"Average TurnAround Time: {Lottery.Run("testdata4.txt")}");
-            Console.WriteLine();
+//            Console.WriteLine("TestData2\n");
+//
+//            Console.WriteLine($"First-Come First-Serve");
+//            Console.WriteLine($"Average TurnAround Time: {FCFS.Run("testdata2.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Shortest-Job-First");
+//            Console.WriteLine($"Average TurnAround Time: {SJS.Run("testdata2.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Round Robin 30");
+//            Console.WriteLine($"Average TurnAround Time: {RR30.Run("testdata2.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Round Robin 60");
+//            Console.WriteLine($"Average TurnAround Time: {RR60.Run("testdata2.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Lottery");
+//            Console.WriteLine($"Average TurnAround Time: {Lottery.Run("testdata2.txt")}");
+//            Console.WriteLine();
+//            
+//            // TestData3
+//            Console.WriteLine("TestData3\n");
+//
+//            Console.WriteLine($"First-Come First-Serve");
+//            Console.WriteLine($"Average TurnAround Time: {FCFS.Run("testdata3.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Shortest-Job-First");
+//            Console.WriteLine($"Average TurnAround Time: {SJS.Run("testdata3.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Round Robin 30");
+//            Console.WriteLine($"Average TurnAround Time: {RR30.Run("testdata3.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Round Robin 60");
+//            Console.WriteLine($"Average TurnAround Time: {RR60.Run("testdata3.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Lottery");
+//            Console.WriteLine($"Average TurnAround Time: {Lottery.Run("testdata3.txt")}");
+//            Console.WriteLine();
+//            
+//            // TestData4
+//            Console.WriteLine("TestData4\n");
+//
+//            Console.WriteLine($"First-Come First-Serve");
+//            Console.WriteLine($"Average TurnAround Time: {FCFS.Run("testdata4.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Shortest-Job-First");
+//            Console.WriteLine($"Average TurnAround Time: {SJS.Run("testdata4.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Round Robin 30");
+//            Console.WriteLine($"Average TurnAround Time: {RR30.Run("testdata4.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Round Robin 60");
+//            Console.WriteLine($"Average TurnAround Time: {RR60.Run("testdata4.txt")}");
+//            Console.WriteLine();
+//            Console.WriteLine($"Lottery");
+//            Console.WriteLine($"Average TurnAround Time: {Lottery.Run("testdata4.txt")}");
+//            Console.WriteLine();
             
             
         }

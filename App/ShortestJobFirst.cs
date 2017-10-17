@@ -14,16 +14,9 @@ namespace App
         public int Run(string testData)
         {
             ReadTestData(testData);
-            
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            
             ProcessQueue.Sort(new SmallestBurstTime());
             AddBurstTimes();
-            
-            stopWatch.Stop();
-            Console.WriteLine($"Time Elapsed: {stopWatch.Elapsed.TotalMilliseconds}ms");
-            
+
             return GetAvgTurnAroundTime();
         }
         

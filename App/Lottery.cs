@@ -16,9 +16,6 @@ namespace App
         {
             ReadTestData(testData);
             
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-
             Random random = new Random();
             int randNum;
             // Do lottery
@@ -33,7 +30,8 @@ namespace App
                     randNum -= ((Process) ProcessQueue[i]).BurstTime;
                     if (randNum <= 0)
                     {
-                        TurnAroundTime += ((Process) ProcessQueue[i]).BurstTime;
+                        CPUTime += ((Process) ProcessQueue[i]).BurstTime;
+                        TotalTurnAroundTime += CPUTime;
                         ProcessQueue.RemoveAt(i);
                         winner = true;
                     }
@@ -41,14 +39,10 @@ namespace App
                     // Switch time
                     if (i != ProcessQueue.Count)
                     {
-                        TurnAroundTime += SwitchTime;
+                        CPUTime += SwitchTime;
                     }
                 }
             }
-            
-            stopWatch.Stop();
-            Console.WriteLine($"Time Elapsed: {stopWatch.Elapsed.TotalMilliseconds}ms");
-            
             return GetAvgTurnAroundTime();
         }
 
