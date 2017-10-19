@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace App
 {
@@ -10,6 +11,7 @@ namespace App
         protected int TotalTurnAroundTime { get; set; }
         protected int QueueLength { get; set; }
         protected ArrayList ProcessQueue { get; set; }
+        public List<CSVProcess> CsvProcesses { get; set; }
 
         /// <summary>
         /// Reads the file with the processes and put them in a queue
@@ -20,6 +22,7 @@ namespace App
             CPUTime = 0;
             TotalTurnAroundTime = 0;
             ProcessQueue = new ArrayList();
+            CsvProcesses = new List<CSVProcess>();
             
             string[] lines = System.IO.File.ReadAllLines(testData);
 
@@ -77,8 +80,18 @@ namespace App
                 
                 CPUTime += currProc.BurstTime;
                 TotalTurnAroundTime += CPUTime;
-                CPUTime += SwitchTime;
+
+                CSVProcess csvProc = new CSVProcess
+                {
+                    Pid   = currProc.Pid,
+                    CPUTime = CPUTime,
+                    StartBurstTime = currProc.BurstTime,
+                    EndBurstTime = 0,
+                    Complete = true
+                };
+                CsvProcesses.Add(csvProc);
                 
+                CPUTime += SwitchTime;
                 //Console.WriteLine("a: " + CPUTime);
             }
             // Remove last CPU time for switch since not necessary
