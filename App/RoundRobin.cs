@@ -35,17 +35,15 @@ namespace App
                     if (proc.BurstTime <= 0)
                     {
                         ProcessQueue.RemoveAt(i);
-                        CPUTime += _timeQ - burst;
+                        CPUTime += _timeQ - burst; // maybe +
                         TotalTurnAroundTime += CPUTime;
-                        CPUTime += SwitchTime;
                         i--;
                     }
                     else
                     {
                         CPUTime += _timeQ;
-                        TotalTurnAroundTime += CPUTime;
-                        CPUTime += SwitchTime;
                     }
+                    CPUTime += SwitchTime;
                 }
             }
             

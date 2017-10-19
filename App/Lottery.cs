@@ -5,7 +5,7 @@ namespace App
 {
     public class Lottery : Scheduler, IScheduler
     {
-        private int _totalPriority;
+        private const int TIMEQ = 50;
         
         /// <summary>
         /// Run the Lottery scheduler on the data
@@ -21,26 +21,31 @@ namespace App
             // Do lottery
             while (ProcessQueue.Count > 0)
             {
-                _calcTotalPriority();
-                randNum = random.Next(0, _totalPriority);
+                randNum = random.Next(0, _calcTotalPriority());
 
                 bool winner = false;
-                for (int i = 0; !winner || i < ProcessQueue.Count; i++)
+                for (int i = 0; !winner; i++)
                 {
-                    randNum -= ((Process) ProcessQueue[i]).BurstTime;
+                    randNum -= ((Process) ProcessQueue[i]).Priority;
                     if (randNum <= 0)
                     {
-                        CPUTime += ((Process) ProcessQueue[i]).BurstTime;
-                        TotalTurnAroundTime += CPUTime;
-                        ProcessQueue.RemoveAt(i);
+                        // Check burst
+                        Process tempProcess = (Process) ProcessQueue[i];
+                        tempProcess.BurstTime -= TIMEQ;
+                        if (tempProcess.BurstTime <= 0)
+                        {
+                            CPUTime += tempProcess.BurstTime + TIMEQ;
+                            TotalTurnAroundTime += CPUTime;
+                            ProcessQueue.RemoveAt(i);
+                        }
+                        else
+                        {
+                            CPUTime += TIMEQ;
+                            ProcessQueue[i] = tempProcess;
+                        }
                         winner = true;
                     }
-                    
-                    // Switch time
-                    if (i != ProcessQueue.Count)
-                    {
-                        CPUTime += SwitchTime;
-                    }
+                    CPUTime += SwitchTime;
                 }
             }
             return GetAvgTurnAroundTime();
@@ -49,14 +54,15 @@ namespace App
         /// <summary>
         /// Calculate the total priority by adding all of the priorities from ProcessQueue
         /// </summary>
-        private void _calcTotalPriority()
+        private int _calcTotalPriority()
         {
-            _totalPriority = 0;
+            int TotalPriority = 0;
 
             foreach (Process process in ProcessQueue)
             {
-                _totalPriority += process.Priority;
+                TotalPriority += process.Priority;
             }
+            return TotalPriority;
         }
     }
 }
