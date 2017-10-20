@@ -30,12 +30,19 @@ namespace App
                     Process proc = (Process)ProcessQueue[i];
                     int burst = proc.BurstTime;
                     proc.BurstTime = burst - _timeQ;
-                    ProcessQueue[i] = proc;
+                    ProcessQueue[i] = proc;                    
+                    
+                    CSVProcess csvProc = new CSVProcess
+                    {
+                        Pid = proc.Pid,
+                        CPUTime = CPUTime,
+                        StartBurstTime = burst,
+                    };
                     
                     if (proc.BurstTime <= 0)
                     {
                         ProcessQueue.RemoveAt(i);
-                        CPUTime += _timeQ - burst; // maybe +
+                        CPUTime += _timeQ - burst;
                         TotalTurnAroundTime += CPUTime;
                         i--;
                     }
@@ -43,14 +50,37 @@ namespace App
                     {
                         CPUTime += _timeQ;
                     }
+                    
+                    CsvProcesses.Add(_completeCSVProcess(csvProc, proc.BurstTime));
                     CPUTime += SwitchTime;
                 }
             }
             
             // Remove last CPU time for switch since not necessary
+            // TODO: Maybe move up a block 
             CPUTime -= SwitchTime;
 
             return GetAvgTurnAroundTime();
+        }
+
+        private static CSVProcess _completeCSVProcess(CSVProcess csvProc, int burstTime)
+        {
+            if (burstTime < 0)
+            {
+                csvProc.EndBurstTime = burstTime * -1;
+                csvProc.Complete = true;
+            }
+            else if (burstTime == 0)
+            {
+                csvProc.EndBurstTime = 0;
+                csvProc.Complete = true;
+            }
+            else
+            {
+                csvProc.EndBurstTime = burstTime;
+                csvProc.Complete = false;
+            }
+            return csvProc;
         }
         
     }

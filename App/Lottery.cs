@@ -31,18 +31,31 @@ namespace App
                     {
                         // Check burst
                         Process tempProcess = (Process) ProcessQueue[i];
+                        
+                        CSVProcess csvProc = new CSVProcess
+                        {
+                            Pid   = tempProcess.Pid,
+                            CPUTime = CPUTime,
+                            StartBurstTime = tempProcess.BurstTime,
+                        };
+                        
                         tempProcess.BurstTime -= TIMEQ;
                         if (tempProcess.BurstTime <= 0)
                         {
+                            csvProc.EndBurstTime = 0;
+                            csvProc.Complete = true;
                             CPUTime += tempProcess.BurstTime + TIMEQ;
                             TotalTurnAroundTime += CPUTime;
                             ProcessQueue.RemoveAt(i);
                         }
                         else
                         {
+                            csvProc.EndBurstTime = tempProcess.BurstTime;
+                            csvProc.Complete = false;
                             CPUTime += TIMEQ;
                             ProcessQueue[i] = tempProcess;
                         }
+                        CsvProcesses.Add(csvProc);
                         winner = true;
                     }
                     CPUTime += SwitchTime;

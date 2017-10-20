@@ -75,12 +75,6 @@ namespace App
         {
             foreach (Process currProc in ProcessQueue)
             {
-//                Console.WriteLine(currProc.BurstTime);
-//                Console.WriteLine("b: " + CPUTime);
-                
-                CPUTime += currProc.BurstTime;
-                TotalTurnAroundTime += CPUTime;
-
                 CSVProcess csvProc = new CSVProcess
                 {
                     Pid   = currProc.Pid,
@@ -89,10 +83,12 @@ namespace App
                     EndBurstTime = 0,
                     Complete = true
                 };
+                
+                CPUTime += currProc.BurstTime;
+                TotalTurnAroundTime += CPUTime;
                 CsvProcesses.Add(csvProc);
                 
                 CPUTime += SwitchTime;
-                //Console.WriteLine("a: " + CPUTime);
             }
             // Remove last CPU time for switch since not necessary
             CPUTime -= SwitchTime;
