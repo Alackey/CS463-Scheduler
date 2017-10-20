@@ -64,7 +64,7 @@ namespace App
         /// <returns>Average turnaround time</returns>
         protected int GetAvgTurnAroundTime()
         {
-            Console.WriteLine($"{TotalTurnAroundTime}:{CPUTime}:{QueueLength}");
+            //Console.WriteLine($"{TotalTurnAroundTime}:{CPUTime}:{QueueLength}");
             return TotalTurnAroundTime / QueueLength;
         }
 

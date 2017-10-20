@@ -57,7 +57,6 @@ namespace App
             }
             
             // Remove last CPU time for switch since not necessary
-            // TODO: Maybe move up a block 
             CPUTime -= SwitchTime;
 
             return GetAvgTurnAroundTime();
@@ -65,12 +64,7 @@ namespace App
 
         private static CSVProcess _completeCSVProcess(CSVProcess csvProc, int burstTime)
         {
-            if (burstTime < 0)
-            {
-                csvProc.EndBurstTime = burstTime * -1;
-                csvProc.Complete = true;
-            }
-            else if (burstTime == 0)
+            if (burstTime <= 0)
             {
                 csvProc.EndBurstTime = 0;
                 csvProc.Complete = true;

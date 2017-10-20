@@ -31,6 +31,7 @@ namespace App
              */
             
             Console.WriteLine("TestData1\n");
+            Console.WriteLine("Output file: Result1.csv");
 
             writer = File.CreateText("Result1.csv");
             csv = new CsvWriter(writer);
@@ -58,6 +59,7 @@ namespace App
              */
             
             Console.WriteLine("TestData2\n");
+            Console.WriteLine("Output file: Result2.csv");
 
             writer = File.CreateText("Result2.csv");
             csv = new CsvWriter(writer);
@@ -85,6 +87,7 @@ namespace App
              */
             
             Console.WriteLine("TestData3\n");
+            Console.WriteLine("Output file: Result3.csv");
 
             writer = File.CreateText("Result3.csv");
             csv = new CsvWriter(writer);
@@ -112,6 +115,7 @@ namespace App
              */
             
             Console.WriteLine("TestData4\n");
+            Console.WriteLine("Output file: Result4.csv");
 
             writer = File.CreateText("Result4.csv");
             csv = new CsvWriter(writer);
